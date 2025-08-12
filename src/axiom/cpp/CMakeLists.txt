@@ -11,10 +11,11 @@ set(CPP_HEADERS
 # Optional CUDA sources
 if (AXIOM_USE_CUDA)
     list(APPEND CPP_SOURCES
-        cuda/gpu_kernels.cu
-        cuda/tensor_ops.cu
+        ${PROJECT_SOURCE_DIR}/src/axiom/cpp/cuda/gpu_kernels.cu
+        ${PROJECT_SOURCE_DIR}/src/axiom/cpp/cuda/tensor_ops.cu
     )
-    set_source_files_properties(cuda/gpu_kernels.cu cuda/tensor_ops.cu PROPERTIES LANGUAGE CUDA)
+    set_source_files_properties(${PROJECT_SOURCE_DIR}/src/axiom/cpp/cuda/gpu_kernels.cu ${PROJECT_SOURCE_DIR}/src/axiom/cpp/cuda/tensor_ops.cu PROPERTIES LANGUAGE CUDA)
+
 endif()
 
 # Build the Python extension
