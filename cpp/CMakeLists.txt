@@ -33,3 +33,9 @@ if (HAVE_CUDA)
     target_link_libraries(_axiom PRIVATE core_gpu CUDA::cudart)
     target_compile_definitions(_axiom PRIVATE HAVE_CUDA)
 endif()
+
+install(TARGETS _axiom
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
