@@ -1,9 +1,4 @@
-import axiom_cpp
+import _axiom
 
-def test_hello():
-    result = axiom_cpp.hello()
-    assert result == "Hello from Axiom C++ core!", f"Unexpected result: {result}"
-
-if __name__ == "__main__":
-    test_hello()
-    print("test_hello passed!")
+def test_add():
+    assert _axiom.add(2, 3) == 5

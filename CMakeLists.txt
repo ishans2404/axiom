@@ -1,16 +1,12 @@
 cmake_minimum_required(VERSION 3.18)
-project(axiom LANGUAGES CXX)
+project(axiom LANGUAGES CXX CUDA) # <-- add CUDA here, no need for enable_language()
 
-# Make sure C++17 is enabled
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Option to control CUDA usage
 option(AXIOM_USE_CUDA "Build with CUDA support" ON)
 
-# Try to detect CUDA if enabled
 if(AXIOM_USE_CUDA)
-    enable_language(CUDA)
     find_package(CUDAToolkit QUIET)
     if (CUDAToolkit_FOUND)
         message(STATUS "CUDA found: ${CUDAToolkit_VERSION}")
@@ -23,14 +19,11 @@ else()
     set(HAVE_CUDA FALSE)
 endif()
 
+# Make HAVE_CUDA available to all subdirectories
+add_compile_definitions($<$<BOOL:${HAVE_CUDA}>:HAVE_CUDA>)
+
 # Add pybind11
 add_subdirectory(external/pybind11)
 
 # Add C++ sources
 add_subdirectory(cpp)
-
-# Install Python package files
-install(
-    DIRECTORY python/axiom
-    DESTINATION ${SKBUILD_PLATLIB_DIR}
-)
