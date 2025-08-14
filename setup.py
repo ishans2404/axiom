@@ -1,5 +1,16 @@
 from skbuild import setup
 from setuptools import find_packages
+from pybind11.setup_helpers import Pybind11Extension
+
+ext_modules = [
+    Pybind11Extension(
+        "_axiom",
+        [
+            "src/axiom/bindings/module.cpp",
+            "src/axiom/bindings/converters.cpp"
+        ],
+    ),
+]
 
 setup(
     name="axiom",
@@ -9,12 +20,11 @@ setup(
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     cmake_args=[
-        # Pass custom cmake flags here if needed, e.g. enable/disable CUDA
-        # "-DAXIOM_USE_CUDA=ON"  # or OFF for CPU only
+        # "-DAXIOM_USE_CUDA=ON",
     ],
     python_requires=">=3.11",
     install_requires=[
-        # Put your python dependencies here, e.g. numpy, torch etc
+        # Add your dependencies here
     ],
-    # Add classifiers, keywords etc as you want
+    ext_modules=ext_modules,
 )

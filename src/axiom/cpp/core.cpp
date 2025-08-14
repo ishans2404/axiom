@@ -2,6 +2,10 @@
 #include <string>
 using namespace std;
 
-string hello_core() {
-    return "Hello from Axiom C++ core!";
+int add(int a, int b) {
+    return a + b;
+}
+
+string greet(const string& name) {
+    return "Hello, " + name + "!";
 }

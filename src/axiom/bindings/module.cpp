@@ -4,7 +4,8 @@
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(axiom_cpp, m) {
+PYBIND11_MODULE(_axiom, m) {
     m.doc() = "Axiom core Python bindings";
-    m.def("hello", &hello_core, "Return a greeting from the C++ core");
+    m.def("add", &add, "Add two integers");
+    m.def("greet", &greet, "Greet someone by name");
 }

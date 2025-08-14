@@ -2,4 +2,5 @@
 #include <string>
 using namespace std;
 
-string hello_core();
+int add(int a, int b);
+string greet(const string& name);

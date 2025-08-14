@@ -29,11 +29,17 @@ endif()
 # ---------------------------------
 add_subdirectory(src/axiom/cpp)
 
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/axiom
+    DESTINATION include
+    FILES_MATCHING PATTERN "*.hpp"
+)
+
+
 # ---------------------------------
 # Pass CUDA flag to code 
 # ---------------------------------
 if (AXIOM_USE_CUDA)
-    target_compile_definitions(axiom_cpp PRIVATE AXIOM_WITH_CUDA=1)
+    target_compile_definitions(_axiom PRIVATE AXIOM_WITH_CUDA=1)
 else()
-    target_compile_definitions(axiom_cpp PRIVATE AXIOM_WITH_CUDA=0)
+    target_compile_definitions(_axiom PRIVATE AXIOM_WITH_CUDA=0)
 endif()

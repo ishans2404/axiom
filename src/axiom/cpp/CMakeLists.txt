@@ -19,7 +19,7 @@ if (AXIOM_USE_CUDA)
 endif()
 
 # Build the Python extension
-pybind11_add_module(axiom_cpp
+pybind11_add_module(_axiom
     ${PROJECT_SOURCE_DIR}/src/axiom/bindings/module.cpp
     ${PROJECT_SOURCE_DIR}/src/axiom/bindings/converters.cpp
     ${CPP_SOURCES}
@@ -27,16 +27,28 @@ pybind11_add_module(axiom_cpp
 )
 
 # Include paths for your code
-target_include_directories(axiom_cpp PRIVATE
+target_include_directories(_axiom
+    PRIVATE
     ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/src
 )
 
+
 # Link CUDA if needed
 if (AXIOM_USE_CUDA)
     find_package(CUDAToolkit REQUIRED)
-    target_link_libraries(axiom_cpp PRIVATE CUDA::cudart)
+    target_link_libraries(_axiom PRIVATE CUDA::cudart)
 else()
     message(STATUS "Building CPU-only version without CUDA dependencies.")
 endif()
+
+if(NOT DEFINED PYTHON_SITE_PACKAGES)
+    set(PYTHON_SITE_PACKAGES "lib/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}/site-packages")
+endif()
+
+
+install(TARGETS _axiom
+    LIBRARY DESTINATION axiom
+    RUNTIME DESTINATION axiom
+)
 

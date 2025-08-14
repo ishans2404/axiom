@@ -380,6 +380,9 @@ include src/axiom/cpp/CMakeLists.txt
 include src/axiom/cpp/core.cpp
 include src/axiom/cpp/core.hpp
 include src/axiom/cpp/utils.cpp
+include src/axiom/cpp/cuda/gpu_kernels.cu
+include src/axiom/cpp/cuda/gpu_kernels.cuh
+include src/axiom/cpp/cuda/tensor_ops.cu
 include src/axiom/utils.py
 include src/axiom_cli/__init__.py
 include src/axiom_cli/main.py
