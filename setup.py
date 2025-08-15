@@ -18,7 +18,8 @@ setup(
     package_dir={"": "python"},
     cmake_args=[
         "-DAXIOM_USE_CUDA=ON",
-        f"-DSKBUILD_PLATLIB_DIR={platlib_dir}"
+        # f"-DSKBUILD_PLATLIB_DIR={platlib_dir}",
+        "-DCMAKE_INSTALL_LIBDIR=."
     ],
     python_requires=">=3.11",
     install_requires=[
